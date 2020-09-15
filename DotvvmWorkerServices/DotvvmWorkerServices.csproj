@@ -13,4 +13,7 @@
     <PackageReference Include="DotVVM.AspNetCore" Version="2.4.0.1" />
 
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="BackgroundServices\" />
+  </ItemGroup>
 </Project>

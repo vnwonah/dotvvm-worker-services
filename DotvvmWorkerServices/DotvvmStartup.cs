@@ -34,6 +34,10 @@ namespace DotvvmWorkerServices
             {
                 Location = new UrlResourceLocation("~/lib/jquery/dist/jquery.min.js")
             });
+            config.Resources.Register("bootstrap", new StylesheetResource
+            {
+                Location = new UrlResourceLocation("~/lib/bootstrap/dist/css/bootstrap.css")
+            });
             config.Resources.Register("Styles", new StylesheetResource()
             {
                 Location = new UrlResourceLocation("~/Resources/style.css")
