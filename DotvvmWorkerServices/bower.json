@@ -1,0 +1,8 @@
+{
+  "name": "dotvvmworkerservices",
+  "private": true,
+  "dependencies": {
+		"jquery" : "3.4.1",
+		"bootstrap" : "4.3.1"
+  }
+}
