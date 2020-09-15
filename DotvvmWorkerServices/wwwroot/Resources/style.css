@@ -5,6 +5,14 @@ html, body {
     height: 100%;
 }
 
+#main-div {
+    height: 90vh;
+    text-align: center;
+    width: 100%;
+    display: block;
+    margin: 0 auto; /* vh stands for view-port height, 1vh is 1% of screen height */
+}
+
 .content {
     display: flex;
     flex-direction: column;
