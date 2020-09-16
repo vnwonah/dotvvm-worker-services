@@ -1,14 +1,11 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using DotVVM.Framework.Routing;
+using DotvvmWorkerServices.BackgroundServices;
+using DotvvmWorkerServices.Services;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
-using Microsoft.Extensions.Logging;
-using DotVVM.Framework.Hosting;
-using DotVVM.Framework.Routing;
-using DotvvmWorkerServices.BackgroundServices;
+using System;
 
 namespace DotvvmWorkerServices
 {
@@ -20,6 +17,12 @@ namespace DotvvmWorkerServices
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddHostedService<GetWeatherInfoBackgroundService>();
+            services.AddHttpClient<WeatherInfoService>(client =>
+            {
+                client.BaseAddress = new Uri("https://community-open-weather-map.p.rapidapi.com");
+                client.DefaultRequestHeaders.Add("X-RapidAPI-Host", "community-open-weather-map.p.rapidapi.com");
+                client.DefaultRequestHeaders.Add("X-RapidAPI-Key", "5acbd0464bmsh17680cb27715eabp13091bjsnf01f91412d73");
+            });
             services.AddDataProtection();
             services.AddAuthorization();
             services.AddWebEncoders();

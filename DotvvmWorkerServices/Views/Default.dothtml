@@ -3,7 +3,20 @@
 <dot:Content ContentPlaceHolderID="MainContent">
     <div ID="main-div">
         <h1 style="margin-top: 30%;" class="cover-heading">Weather Information for Lagos, Nigeria.</h1>
-        <hr/>
+        <hr />
+        <dot:GridView DataSource="{value: WeatherInfos}" class="table">
+            <Columns>
+                <dot:GridViewTextColumn ValueBinding="{value: DateTime}" HeaderText="Date / Time" HeaderCssClass="thead-dark" />
+                <dot:GridViewTextColumn ValueBinding="{value: Weather}" HeaderText="Weather" />
+                <dot:GridViewTextColumn ValueBinding="{value: Description}" HeaderText="Description" />
+                <dot:GridViewTextColumn ValueBinding="{value: Temperature}" HeaderText="Temperature (°C)" />
+                <dot:GridViewTextColumn ValueBinding="{value: Humidity}" HeaderText="Humidity" />
+                <dot:GridViewTextColumn ValueBinding="{value: Pressure}" HeaderText="Pressure" />
+            </Columns>
+            <EmptyDataTemplate>
+                There is no weather information at this time.
+            </EmptyDataTemplate>
+        </dot:GridView>
         <table class="table">
             <thead class="thead-dark">
                 <tr>
@@ -12,6 +25,7 @@
                     <th>Description</th>
                     <th scope="col">Temperature (°C)</th>
                     <th scope="col">Humidity</th>
+                    <th scope="col">Pressure</th>
                 </tr>
             </thead>
             <tbody>
