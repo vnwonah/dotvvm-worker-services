@@ -27,18 +27,25 @@ namespace DotvvmWorkerServices.BackgroundServices
             _cache.Set<List<long>>(AppConfig.WEATHER_INFOS_KEY, new List<long>());
             while(!stoppingToken.IsCancellationRequested)
             {
-                var weatherInfo = await _weatherInfoService.GetWeatherData("Lagos,Nigeria");
-                var values = _cache.Get<List<long>>(AppConfig.WEATHER_INFOS_KEY);
-                if(values.Count > 9)
+                try
                 {
-                    var oldest = values.Min();
-                    values.Remove(oldest);
-                    _cache.Remove(oldest);
+                    var weatherInfo = await _weatherInfoService.GetWeatherData("Lagos,Nigeria");
+                    var values = _cache.Get<List<long>>(AppConfig.WEATHER_INFOS_KEY);
+                    if (values.Count > 9)
+                    {
+                        var oldest = values.Min();
+                        values.Remove(oldest);
+                        _cache.Remove(oldest);
+                    }
+                    values.Add(weatherInfo.Dt.Value);
+                    _cache.Set<List<long>>(AppConfig.WEATHER_INFOS_KEY, values);
+                    _cache.Set<WeatherInfo>(weatherInfo.Dt.Value, weatherInfo);
+                    await Task.Delay(TimeSpan.FromMinutes(1));
                 }
-                values.Add(weatherInfo.Dt.Value);
-                _cache.Set<List<long>>(AppConfig.WEATHER_INFOS_KEY, values);
-                _cache.Set<WeatherInfo>(weatherInfo.Dt.Value, weatherInfo);
-                await Task.Delay(TimeSpan.FromMinutes(30));
+                catch (Exception e)
+                {
+                }
+                
             }
         }
     }

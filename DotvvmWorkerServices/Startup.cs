@@ -21,7 +21,7 @@ namespace DotvvmWorkerServices
             {
                 client.BaseAddress = new Uri("https://community-open-weather-map.p.rapidapi.com");
                 client.DefaultRequestHeaders.Add("X-RapidAPI-Host", "community-open-weather-map.p.rapidapi.com");
-                client.DefaultRequestHeaders.Add("X-RapidAPI-Key", "5acbd0464bmsh17680cb27715eabp13091bjsnf01f91412d73");
+                client.DefaultRequestHeaders.Add("X-RapidAPI-Key", "YOUR - KEY - HERE");
             });
             services.AddDataProtection();
             services.AddAuthorization();
